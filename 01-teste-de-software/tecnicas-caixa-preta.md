@@ -107,3 +107,139 @@
 | **Status do pedido** | Aprovada | Coordenação | Coordenação | Recusada |
 
 **Justificativa da simplificação:** para aluno com equipamento disponível, a antecedência não muda o resultado (sempre Coordenação), então R5 e R6 foram unidas. Para equipamento indisponível, o resultado é sempre Recusada, independentemente de quem pediu ou da antecedência, então R3, R4, R7 e R8 foram unidas.
+# ST1: Reserva de Equipamento
+
+## Matriz de Transição de Estados
+
+| Estado/Evento | enviar | aprovar | recusar | retirar | devolver | atrasar | cancelar |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| **Rascunho** | Solicitada | — | — | — | — | — | Cancelada |
+| **Solicitada** | — | Aprovada | Recusada | — | — | — | Cancelada |
+| **Aprovada** | — | — | — | Em uso | — | — | Cancelada |
+| **Recusada** | — | — | — | — | — | — | — |
+| **Em uso** | — | — | — | — | Devolvida | Atrasada | — |
+| **Atrasada** | — | — | — | — | Devolvida | — | — |
+| **Devolvida** | — | — | — | — | — | — | — |
+| **Cancelada** | — | — | — | — | — | — | — |
+
+---
+
+## Observações de Regras de Negócio & Governança
+
+* **Propósito do Estado "Atrasada":** Quando um equipamento em atraso é entregue, o evento *devolver* o move diretamente para **Devolvida**. O estado intermediário **Atrasada** existe estritamente para fins de governança:
+  1. **Bloqueio de novas ações:** Impede o professor com pendências de abrir novas solicitações no sistema.
+  2. **Automação de Alertas:** Dispara e-mails diários de cobrança ao usuário e notificações para a gerência de TI.
+  3. **Métricas de Auditoria:** Permite extrair relatórios de conformidade e tempo de retenção irregular de itens do inventário da escola.
+* **Gatilho de Atraso:** O evento *atrasar* é uma ação automatizada e executada de forma nativa pelo sistema (via rotina agendada/cron job) assim que o prazo limite da reserva expira, não dependendo de interação humana.
+* **Regra de Cancelamento:** O evento *cancelar* é permitido exclusivamente antes da retirada física do equipamento (**Rascunho**, **Solicitada** e **Aprovada**). Uma vez em posse do usuário (**Em uso** ou **Atrasada**), o fluxo não pode ser cancelado, apenas finalizado via devolução.
+* **Ciclo de Vida do Rascunho:** O estado **Rascunho** representa uma intenção local do usuário e não é computado como uma reserva real pelo inventário da escola até que o evento *enviar* seja acionado.
+* **Estados Terminais:** Os estados **Recusada**, **Devolvida** e **Cancelada** encerram o ciclo de vida da reserva. Neles, qualquer tentativa de evento resultará em uma transição inválida (`—`).
+
+## Diagrama de Estados do ST1 (Mermaid)
+
+```mermaid
+stateDiagram-v2
+    [*] --> Rascunho
+    
+    Rascunho --> Solicitada : enviar
+    Rascunho --> Cancelada : cancelar
+    
+    Solicitada --> Aprovada : aprovar
+    Solicitada --> Recusada : recusar
+    Solicitada --> Cancelada : cancelar
+    
+    Aprovada --> Em uso : retirar
+    Aprovada --> Cancelada : cancelar
+    
+    Em uso --> Devolvida : devolver
+    Em uso --> Atrasada : atrasar (Sistema)
+    
+    Atrasada --> Devolvida : devolver
+
+    Recusada --> [*]
+    Devolvida --> [*]
+    Cancelada --> [*]
+
+    note right of Rascunho
+        Existe apenas antes do envio.
+        Não é uma reserva real.
+    end note
+
+    note right of Atrasada
+        "atrasar" é disparado pelo sistema 
+        quando a data de devolução passa.
+    end note
+
+    note left of Cancelada
+        "cancelar" só é permitido até a retirada.
+        Depois disso, o evento deixa de ser aceito.
+    end note
+```
+
+
+
+
+
+
+
+# ST2: Ciclo de Vida do Bug
+
+## Matriz de Transição de Estados
+
+| Estado/Evento | relatar | analisar | rejeitar | corrigir | testar | reprovar | aprovar |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| **Novo** | — | Em análise | — | — | — | — | — |
+| **Em análise** | — | — | Fechado | Corrigido | — | — | — |
+| **Corrigido** | — | — | — | — | Reteste | — | — |
+| **Reteste** | — | — | — | — | — | Reaberto | Fechado |
+| **Fechado** | — | — | — | — | — | — | — |
+| **Reaberto** | — | Em análise | — | — | — | — | — |
+
+---
+
+## Observações de Regras de Negócio & Governança
+
+* **Tratamento de Bugs Inválidos (Evento "rejeitar"):** Nem todo bug relatado necessita de correção no código. No estado **Em análise**, o desenvolvedor tem a prerrogativa de acionar o evento *rejeitar*. Isso move o bug diretamente para **Fechado** sob justificativas específicas mapeadas pelo sistema (ex: "Não replicável", "Comportamento esperado/Duplicado" ou "Arquitetura original").
+* **Fluxo de Falha no Teste (Reabertura):** Se o erro persistir durante a etapa de **Reteste**, o analista de QA executa o evento *reprovar*, o que joga o item para **Reaberto**. A partir de **Reaberto**, a única ação sistêmica válida é *analisar*, garantindo que o bug retorne para a esteira de triagem técnica antes de qualquer nova tentativa de correção.
+* **Ciclo de Encerramento Limpo (Remoção do Arquivamento):** O estado **Fechado** atua como o estado terminal definitivo do ciclo de vida do bug, alcançado tanto pela aprovação do reteste quanto pela rejeição justificada na análise. Nenhuma transição subsequente é permitida a partir dele.
+* **Consistência de Nomenclatura:** Todos os estados seguem o padrão nominal estabelecido para mapeamento idêntico nas interfaces visuais do sistema e nos scripts automatizados de testes de caixa preta.
+* **Distinção Técnica do Estado "Fechado" (Rejeição vs. Aprovação):**
+**Fechado por Rejeição (Triagem):** O item encerra o ciclo de vida sem alteração de código. O sistema exige uma justificativa de descarte (ex: duplicado, inválido) para fins de auditoria e cálculo de taxa de rejeição (rejection rate) do time.
+
+**Fechado por Aprovação (QA):** O item encerra o ciclo após implementação de código e validação funcional bem-sucedida. O sistema vincula os relatórios de teste e marca a build/versão de release onde o fix foi publicado.
+
+## Diagrama de Estados do ST2 (Mermaid)
+
+```mermaid
+stateDiagram-v2
+    [*] --> Novo
+    
+    Novo --> Em_análise : analisar
+    
+    Em análise --> Corrigido : corrigir
+    Em análise --> Fechado : rejeitar
+    
+    Corrigido --> Reteste : testar
+    
+    Reteste --> Fechado : aprovar
+    Reteste --> Reaberto : reprovar
+    
+    Reaberto --> Em_análise : analisar
+
+    Fechado --> [*]
+
+    note right of Em análise
+        "rejeitar" fecha o bug se ele for 
+        duplicado, inválido ou não replicável.
+    end note
+
+    note left of Reaberto
+        Bugs reprovados no reteste obrigatoriamente 
+        voltam para análise antes de nova correção.
+    end note
+
+    note right of Fechado
+        Fechado por Rejeição: encerra sem código (exige justificativa).
+        Fechado por Aprovação: encerra com código corrigido e validado pelo QA.
+    end note
+```
