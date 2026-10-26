@@ -176,6 +176,47 @@ stateDiagram-v2
     end note
 ```
 
+### Casos de transição válidos (ST1)
+
+| ID | Estado inicial | Evento | Estado esperado | Tipo |
+|---|---|---|---|---|
+| CT-01 | Rascunho | enviar |  Solicitada | Válida |
+| CT-02 | Rascunho | cancelar |  Cancelada | Válida |
+| CT-03 | Solicitada | aprovar |  Aprovada | Válida |
+| CT-04 | Solicitada | recusar |  Recusada | Válida |
+| CT-05 | Solicitada | cancelar |  Cancelada | Válida |
+| CT-06 | Aprovada | retirar |  Em uso | Válida |
+| CT-07 | Aprovada | cancelar |  Cancelada | Válida |
+| CT-08 | Em uso | devolver |  Devolvida | Válida |
+| CT-09 | Em uso | atrasar |  Atrasada | Válida |
+| CT-10 | Atrasada | devolver |  Devolvida | Válida |
+
+### Casos de transição inválidos (ST1)
+
+| ID | Estado inicial | Evento | Estado esperado | Tipo |
+|---|---|---|---|---|
+| CT-11 | Solicitada | enviar |  bloqueado | Inválida |
+| CT-12 | Aprovada | devolver |  bloqueado | Inválida |
+| CT-13 | Recusada | retirar |  bloqueado | Inválida |
+| CT-14 | Em uso | aprovar |  bloqueado | Inválida |
+| CT-15 | Atrasada | retirar |  bloqueado | Inválida |
+| CT-16 | Devolvida | cancelar |  bloqueado | Inválida |
+
+### Justificativas de Transições Inválidas (ST1)
+
+#### Fluxo Prematuro (Ações antes da hora)
+* **CT-11 (Solicitada ➔ enviar):** Bloqueado. Não se pode enviar o que não foi aprovado primeiro.
+* **CT-12 (Aprovada ➔ devolver):** Bloqueado. Não se pode devolver o que ainda não foi retirado.
+
+#### Violação de Regra/Segurança (Ações proibidas)
+* **CT-13 (Recusada ➔ retirar):** Bloqueado. Pedido negado não dá direito a retirada.
+* **CT-15 (Atrasada ➔ retirar):** Bloqueado. Usuário em atraso não pode retirar mais nada (ou o item já está com ele).
+
+#### Ações Redundantes (Fase atual já passou)
+* **CT-14 (Em uso ➔ aprovar):** Bloqueado. O item já está sendo usado, não precisa de nova aprovação.
+
+#### Ciclo Já Finalizado (Ações tardias)
+* **CT-16 (Devolvida ➔ cancelar):** Bloqueado. O processo já terminou, não dá mais para cancelar.
 
 
 
@@ -243,3 +284,39 @@ stateDiagram-v2
         Fechado por Aprovação: encerra com código corrigido e validado pelo QA.
     end note
 ```
+
+
+### Casos de transição válidos (ST2)
+
+| ID | Estado inicial | Evento | Estado esperado | Tipo |
+|---|---|---|---|---|
+| CT-01 | Novo | analisar |  Em análise | Válida |
+| CT-02 | Em análise | rejeitar |  Fechado | Válida |
+| CT-03 | Em análise | corrigir |  Corrigido | Válida |
+| CT-04 | Corrigido | testar |  Reteste | Válida |
+| CT-05 | Reteste | reprovar |  Reaberto | Válida |
+| CT-06 | Reteste | aprovar |  Fechado | Válida |
+| CT-07 | Reaberto | analisar |  Em análise | Válida |
+
+
+### Casos de transição inválidos (ST2)
+
+| ID | Estado inicial | Evento | Estado esperado | Tipo |
+|---|---|---|---|---|
+| CT-08 | Novo | testar |  bloqueado | Inválida |
+| CT-09 | Em análise | testar |  bloqueado | Inválida |
+| CT-10 | Corrigido | aprovar |  bloqueado | Inválida |
+| CT-11 | Fechado | testar |  bloqueado | Inválida |
+
+
+### Justificativas de Transições Inválidas (ST2)
+
+#### Fluxo Prematuro (Ações antes da hora)
+* **CT-08 (Novo ➔ testar):** Bloqueado. O erro acabou de ser criado e ainda não recebeu manutenção. Não há correção disponível para ser testada.
+* **CT-09 (Em análise ➔ testar):** Bloqueado. O problema ainda está sendo investigado ou desenvolvido. O teste só pode ocorrer após o código ser alterado.
+
+#### Fluxo Pulado (Etapa obrigatória ausente)
+* **CT-10 (Corrigido ➔ aprovar):** Bloqueado. Um item corrigido precisa obrigatoriapente passar pela validação/teste do QA antes de receber a aprovação final.
+
+#### Ciclo Já Finalizado (Ações tardias)
+* **CT-11 (Fechado ➔ testar):** Bloqueado. O ticket está encerrado. Testes não podem ser executados em registros históricos finalizados.
