@@ -11,14 +11,32 @@
 *   **Não confundir com:** Teste dinâmico, que obrigatoriamente precisa colocar o software para rodar.
 
 ## Nível de teste
-*   **O que é:** É o grupo de atividades de teste que ficam juntas e estão ligadas a uma etapa específica do desenvolvimento do projeto.
-*   **Exemplo:** Testar uma função isolada do código (componente), depois testar as telas juntas (sistema) e por fim o cliente validar o software (aceitação).
-*   **Não confundir com:** Tipos de teste, que focam no objetivo da qualidade (como funcional ou desempenho) e não na fase do desenvolvimento.
+
+* **O que é:** É o grupo de atividades de teste gerenciadas e organizadas juntas, associadas a etapas específicas do desenvolvimento. Os quatro níveis de teste tradicionais são: **componente**, **integração**, **sistema** e **aceitação**.
+
+* **Exemplo (Sistema da Escola):**
+
+  * **Componente:** Testar isoladamente a função de cálculo do valor das mensalidades ou taxas de reserva.
+
+  * **Integração:** Testar a comunicação entre a tela de reserva e o banco de dados/estoque de vagas.
+
+  * **Sistema:** Testar o fluxo completo do portal de reservas, desde a seleção de cursos/vagas até a finalização.
+
+  * **Aceitação:** Validação pelo cliente ou pela tesouraria antes da liberação.
+
+* **Não confundir com:** Tipos de teste, que focam no objetivo da qualidade (como funcional ou desempenho) e não na fase do desenvolvimento.
 
 ## Ciclo de vida de desenvolvimento
-*   **O que é:** É o modelo que define como as etapas de criação do software são organizadas pela equipe do início ao fim do projeto.
-*   **Exemplo:** Trabalhar com o modelo cascata (onde uma fase só começa quando a outra termina) ou com o modelo ágil (dividido em sprints de entrega rápida).
-*   **Não confundir com:** Ciclo de vida do teste, que cuida apenas das fases e tarefas específicas da equipe de QA.
+
+* **O que é:** É o modelo que define a ordem, a estrutura e a relação entre as etapas de criação do software do início ao fim do projeto.
+
+* **Exemplo:**
+
+  * **Modelo Sequencial (Cascata):** As etapas ocorrem em linha contínua, onde os testes geralmente acontecem após a conclusão do desenvolvimento do código.
+
+  * **Modelo Iterativo/Incremental (Ágil):** O desenvolvimento é dividido em iterações curtas (sprints), onde os testes ocorrem de forma contínua e integrada dentro de cada sprint.
+
+* **Não confundir com:** Processo de teste, que foca exclusivamente na sequência de atividades, tarefas e artefatos específicos executados pela equipe de QA dentro do projeto (também chamado por alguns de ciclo de vida do teste).
 
 ## Objetivos de teste
 *   **O que é:** São as metas e os propósitos que a gente quer alcançar quando decide realizar os testes no sistema.
