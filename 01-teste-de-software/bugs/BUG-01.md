@@ -19,4 +19,4 @@ Cada produto exibe sua própria imagem.
 Os 6 produtos exibem o mesmo cachorro pug (ex.: Sauce Labs Backpack, Sauce Labs Bike Light, Sauce Labs Onesie).
 
 ## Evidência
-![Listagem do problem_user com imagens repetidas](01-teste-de-software/evidencias/vf06-problem-user.png)
+![Listagem do problem_user com imagens repetidas](evidencias/vf06-problem-user.png)
