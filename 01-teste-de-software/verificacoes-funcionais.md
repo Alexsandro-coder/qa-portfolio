@@ -40,11 +40,13 @@
 | VF-20 | Carrinho | Carrinho com itens | Adicionar um item, recarregar a página (F5) | O item permanece no carrinho | O item permaneceu no carrinho após o F5 | Passou |
 | VF-21 | Carrinho | Carrinho com 1 item | Remover o item dentro da tela do carrinho | Item removido da lista e contador atualizado | Item removido da lista e contador atualizado para o novo total (0 ou o número restante) | Passou |
 | VF-22 | Carrinho | Carrinho com itens do problem_user | Logar com problem_user e adicionar 1 item | Item adicionado e contador correto | Três itens não puderam ser adicionados (Sauce Labs Bolt T-Shirt, Sauce Labs Fleece Jacket e Test.allTheThings() T-Shirt (Red)). Os demais entraram e o contador acompanhou a quantidade. A remoção não funcionou na listagem principal, apenas dentro do carrinho. | Falhou |
-| VF-23 |
-| VF-24 |
-| VF-25 |
-| VF-26 |
-| VF-27 |
-| VF-28 |
+| VF-23 | Checkout | standard_user logado, 3 itens no carrinho | Clicar em "Checkout" | Tela "Your Information" com campos First Name, Last Name e Postal Code | Tela "Checkout: Your Information" com os campos fist_name,last_name e zip/postal_code | Passou |
+| VF-24 | Checkout | Tela "Your Information" aberta, campos vazios | Clicar em "Continue" sem preencher nada | Mensagem "Error: First Name is required" | Mensagem "Error: First Name is required" exibida | Passou |
+| VF-25 | Checkout | Tela "Your Information" aberta | Preencher First Name e Postal Code, deixar Last Name vazio e clicar em "Continue" | Mensagem "Error: Last Name is required" | Mensagem "Error: Last Name is required" exibida | Passou |
+| VF-26 | Checkout | Campos preenchidos corretamente | Clicar em "Continue" | Tela "Checkout: Overview" com os 3 itens e o total | Tela "Checkout: Overview" exibindo os itens Sauce Labs Onesie ($7.99), Sauce Labs Backpack ($29.99) e Sauce Labs Bike Light ($9.99) | Passou |
+| VF-27 | Checkout | Tela "Checkout: Overview" aberta | Conferir Item total, Tax e Total | Item total = soma dos preços; Total = Item total + Tax | Item total: $47.97 (soma esperada: $47.97). Tax: $3.84. Total: $51.81. Confirma a regra | Passou |
+| VF-28 | Checkout | Tela "Checkout: Overview" aberta | Clicar em "Finish" | Tela "Thank you for your order!" e contador do carrinho zerado | Após "Finish", a tela exibiu "Thank you for your order!" e o contador do carrinho mostrou 0 | Passou |
 | VF-29 |
 | VF-30 |
+| VF-31 |
+| VF-32 |
