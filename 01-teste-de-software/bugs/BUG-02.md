@@ -19,4 +19,4 @@ A imagem do card deve exibir a camiseta cinza com a estampa de raio vermelho (Bo
 A imagem exibida é de uma camiseta preta, e não cinza com bolt vermelho
 
 ## Evidência
-![Listagem do standard_user com imagem diferente da descrição](evidencias/vf13-standard_user.png)
+![Listagem do standard_user com imagem diferente da descrição](../evidencias/vf13-standard_user.png)

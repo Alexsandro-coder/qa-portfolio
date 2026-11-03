@@ -19,4 +19,4 @@ Item adicionado e contador correto
 Três itens não puderam ser adicionados (Sauce Labs Bolt T-Shirt, Sauce Labs Fleece Jacket e Test.allTheThings() T-Shirt (Red)). Os demais entraram e o contador acompanhou a quantidade. A remoção não funcionou na listagem principal, apenas dentro do carrinho.
 
 ## Evidência
-![Listagem do problem_user com itnes que não puderam ser adicionados](evidencias/vf22-problem-user.png)
+![Listagem do problem_user com itnes que não puderam ser adicionados](../evidencias/vf22-problem-user.png)

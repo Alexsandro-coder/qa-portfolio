@@ -19,4 +19,4 @@ O nome do produto deve seguir o padrão estabelecido "Sauce Labs ..."
 O produto não seguiu o padrão estabelecido e está com o nome de Test.allTheThings() T-Shirt (Red)
 
 ## Evidência
-![Listagem do standard_user com nome fora do padrão no catálogo](evidencias/vf14-standard_user.png)
+![Listagem do standard_user com nome fora do padrão no catálogo](../evidencias/vf14-standard_user.png)
