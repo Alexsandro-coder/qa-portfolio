@@ -18,7 +18,7 @@
 
 | ID | Funcionalidade | Pré-condição | Ação | Resultado esperado | Resultado obtido | Status |
 |---|---|---|---|---|---|---|
-| VF-01 | Login | Usuário standard_user cadastrado | Digitar standard_user e secret_sauce e clicar em Login | Redirecionar para a página de produtos |  Foi redirecionado para a pagina de Products | Passou |
+| VF-01 | Login | Usuário standard_user cadastrado | Digitar standard_user e secret_sauce e clicar em Login | Redirecionar para a página de produtos |  Foi redirecionado para a página de Products | Passou |
 | VF-02 | Login | Usuário locked_out_user cadastrado | Digitar locked_out_user e secret_sauce e clicar em Login | Exibir mensagem de usuário bloqueado e não redirecionar | A mensagem de usuário bloqueado foi exibida e não houve redirecionamento | Passou |
 | VF-03 | Login | Usuário standard_user cadastrado | Digitar standard_user e teste_sauce e clicar em Login | Exibir mensagem de credenciais invalidas | Epic sadface: Username and password do not match any user in this service | Passou |
 | VF-04 | Login | Página de login aberta | Deixar o campo usuário vazio, digitar secret_sauce e clicar em Login | Exibir mensagem de Username obrigatorio | Epic sadface: Username is required | Passou |
@@ -28,18 +28,18 @@
 | VF-08 | Listagem | Tela inicial Products | Ordenar o Products com Price (high to low) | Produtos ordenados por preço do maior para o menor | Primeiro item: Sauce Labs Fleece Jacket ($49.99); Ultimo: Sauce Labs Onesie ($7.99) | Passou |
 | VF-09 | Listagem | Tela inicial Products | Ordenar o Products com Name (A to Z) | Produtos ordenados pelo nome de A - Z | Primeiro item: Sauce Labs Backpack ($29.99); Ultimo: Test.allTheThings() T-Shirt (Red) ($15.99) | Passou |
 | VF-10 | Listagem | Tela inicial Products | Ordenar o Products com Name (Z to A) | Produtos ordenados pelo nome de Z - A | Primeiro item: Test.allTheThings() T-Shirt (Red) ($15.99); Ultimo: Sauce Labs Backpack ($29.99) | Passou |
-| VF-11 | Listagem | Tela inicial Products | Clicar em um produto (ex.: Sauce Labs Backpack) | Redirecionar para a pagina do produto | Foi redirecionado para a página do produto (nome, descrição e valor estão corretos) | Passou |
+| VF-11 | Listagem | Tela inicial Products | Clicar em um produto (ex.: Sauce Labs Backpack) | Redirecionar para a página do produto | Foi redirecionado para a página do produto (nome, descrição e valor estão corretos) | Passou |
 | VF-12 | Listagem | Usuário standard_user logado | Observar a imagem e o preço de cada um dos 6 produtos | Cada produto exibe imagem própria e preço correspondente | Todos os produtos tem foto e valor individuais correspondente | Passou |
 | VF-13 | Listagem | Usuário standard_user logado | Observar (imagem, nome e descrição do produto)  | imagem, nome e descrição condizentes com o produto | Produto Sauce Labs Bolt T-Shirt tem descrição de camiseta cinza com bolt vermelho, mas a imagem exibida é de uma camisa preta. Evidência: ![Listagem do standard_user com imagem diferente da descrição](evidencias/vf13-standard_user.png)| Falhou |
 | VF-14 | Listagem | Usuário standard_user logado | Observar (imagem, nome e descrição do produto)  | imagem, nome e descrição condizentes com o produto | Produto Test.allTheThings() T-Shirt (Red)” foge do padrão “Sauce Labs ...". Evidência: ![Listagem do standard_user nome com inconsistencia de padrão de catalogo](evidencias/vf14-standard_user.png)| Falhou |
-| VF-15 |
-| VF-16 |
-| VF-17 |
-| VF-18 |
-| VF-19 |
-| VF-20 |
-| VF-21 |
-| VF-22 |
+| VF-15 | Carrinho | standard_user logado, carrinho vazio | Clicar em “Add to cart” no Sauce Labs Backpack | Ícone do carrinho mostra 1 item e o botão muda para “Remove” | Ícone mostrando 1 e botão alterado para "Remove" | Passou |
+| VF-16 | Carrinho | standard_user logado, carrinho vazio | Adicionar Backpack, Bike Light e Onesie | Ícone do carrinho mostra 3 | Ícone no valor correto (3) | Passou |
+| VF-17 | Carrinho | 1 item no carrinho | Clicar em “Remove” no item adicionado | Ícone some ou mostra 0, e o botão volta para “Add to cart” | Ícone do carrinho sem número (ou vazio) e botão ‘Add to cart’ restaurado | Passou |
+| VF-18 | Carrinho | standard_user logado, 3 itens no carrinho | Abrir o carrinho e conferir a lista | Os 3 itens aparecem com nome, descrição e preço corretos | Três itens listados: Sauce Labs Onesie ($7.99), Sauce Labs Backpack ($29.99) e Sauce Labs Bike Light ($9.99). Nome, descrição e preço conferem com a listagem.” Descrições longas não precisam estar na tabela; use o nome e o preço | Passou |
+| VF-19 | Carrinho | Itens no carrinho | Abrir o carrinho, clicar em “Continue Shopping” e voltar | Os itens continuam no carrinho | Os itens continuam no carrinho apos voltar a listagem | passou |
+| VF-20 | Carrinho | Carrinho com itens | Adicionar um item, recarregar a página (F5) | O item permanece no carrinho | O item permaneceu no carrinho após o F5 | Passou |
+| VF-21 | Carrinho | Carrinho com 1 item | Remover o item dentro da tela do carrinho | Item removido da lista e contador atualizado | Item removido da lista e contador atualizado para o novo total (0 ou o número restante) | Passou |
+| VF-22 | Carrinho | Carrinho com itens do problem_user | Logar com problem_user e adicionar 1 item | Item adicionado e contador correto | Três itens não puderam ser adicionados (Sauce Labs Bolt T-Shirt, Sauce Labs Fleece Jacket e Test.allTheThings() T-Shirt (Red)). Os demais entraram e o contador acompanhou a quantidade. A remoção não funcionou na listagem principal, apenas dentro do carrinho. | Falhou |
 | VF-23 |
 | VF-24 |
 | VF-25 |
