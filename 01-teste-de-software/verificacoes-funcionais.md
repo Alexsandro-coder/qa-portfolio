@@ -46,7 +46,7 @@
 | VF-26 | Checkout | Campos preenchidos corretamente | Clicar em "Continue" | Tela "Checkout: Overview" com os 3 itens e o total | Tela "Checkout: Overview" exibindo os itens Sauce Labs Onesie ($7.99), Sauce Labs Backpack ($29.99) e Sauce Labs Bike Light ($9.99) | Passou |
 | VF-27 | Checkout | Tela "Checkout: Overview" aberta | Conferir Item total, Tax e Total | Item total = soma dos preços; Total = Item total + Tax | Item total: $47.97 (soma esperada: $47.97). Tax: $3.84. Total: $51.81. Confirma a regra | Passou |
 | VF-28 | Checkout | Tela "Checkout: Overview" aberta | Clicar em "Finish" | Tela "Thank you for your order!" e contador do carrinho zerado | Após "Finish", a tela exibiu "Thank you for your order!" e o contador do carrinho mostrou 0 | Passou |
-| VF-29 |
-| VF-30 |
-| VF-31 |
-| VF-32 |
+| VF-29 | Bugs de propósito | problem_user logado | Abrir a página de produtos e observar as imagens | Cada produto exibe imagem própria (contraponto do VF-06) | Todas as imagens dos 6 produtos exibem o mesmo cachorro pug (ex.: Sauce Labs Backpack, Bike Light, Onesie). Imagens repetidas, como no BUG-01 | Falhou |
+| VF-30 | Bugs de propósito | problem_user logado | Abrir o detalhe de um produto (ex.: Sauce Labs Backpack) | Imagem e descrição correspondem ao produto | A imagem e a descrição do Sauce Labs Backpack correspondem ao produto | Passou |
+| VF-31 | Bugs de propósito | problem_user logado, Sauce Labs Bolt T-Shirt, Sauce Labs Fleece Jacket e Test.allTheThings() T-Shirt (Red) | Adicionar ao carrinho os três itens | Os três itens entram no carrinho e o contador aumenta | Os três itens não entraram no carrinho. Referência: BUG-04 | Falhou |
+| VF-32 | Bugs de propósito | problem_user logado, com item no carrinho | Abrir o carrinho e tentar remover um item na listagem principal | Remoção funciona na listagem, com contador atualizado | Botão “Remove” travado na listagem principal: o item não é removido e o contador não muda. A remoção só funciona dentro do carrinho. Referência: BUG-04| Falhou |
