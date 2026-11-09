@@ -1,16 +1,14 @@
 ﻿# 01: Teste de software
 
-Primeira etapa da trilha. Base teórica do Capítulo 1 do syllabus ISTQB CTFL 4.0, aplicada aos sistemas da escola.
+Primeira etapa da trilha. Base teórica do Capítulo 1 do syllabus ISTQB CTFL 4.0.
 
 ## Conteúdo
 
-| Arquivo | Status |
+| Item | Status |
 |---|---|
-| [glossario.md](glossario.md) | 25 termos com exemplos próprios |
-| [principios.md](principios.md) | 7 princípios de teste com exemplos próprios |
-| [tecnicas-caixa-preta.md](tecnicas-caixa-preta.md) | Partição, valor limite, tabela de decisão e transição de estados |
-
-## Sistemas usados nos exemplos
-
-- Agendamento de equipamentos audiovisuais
-- Controle de estoque da tesouraria
+| Glossário (25 termos) | Concluído |
+| Princípios (7) | Concluído |
+| Técnicas de caixa-preta (partição, valor limite, tabela de decisão, transição de estados) | Concluído |
+| Verificações funcionais (32) | Concluído |
+| Testes exploratórios (3 sessões) | Concluído |
+| Bugs encontrados (BUG-01 a BUG-08) | Concluído |
