@@ -1,7 +1,7 @@
 ## Sessão 1: Checkout com campos de espaços
 
 - **Missão:** tentar quebrar o checkout com campos contendo só espaços.
-- **Tempo:** 5 min (achado encontrado logo no início; sessão encerrada ao confirmar o defeito)![img.png](img.png)
+- **Tempo:** 5 min (achado encontrado logo no início; sessão encerrada ao confirmar o defeito)
 - **Testado:** First Name com "   ", Last Name com "   ", Postal Code com "     ".
 - **Achados:** O Checkout aceitou todos os campos com o espaço em branco e ao clicar em continue , a tela avançou para Checkout: Overview.
 - **Dúvidas:** a regra de negócio aceita espaços? Confirmar com a especificação.
