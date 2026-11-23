@@ -1,0 +1,490 @@
+{
+	"id": "99df6ce7-1616-4bff-a007-4bc3c959e8c0",
+	"name": "ServeRest",
+	"timestamp": "2026-11-23T16:56:11.808Z",
+	"collection_id": "58732135-9aa50be5-a767-47fe-9d22-629a3f722e63",
+	"folder_id": 0,
+	"environment_id": "58732135-c008ea30-8a34-4c28-bcb3-115c39d56225",
+	"totalPass": 28,
+	"delay": 0,
+	"persist": true,
+	"status": "finished",
+	"startedAt": "2026-11-23T16:56:06.668Z",
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "d30b5ca9-d9ae-4d88-a2d6-ffea42b297ec",
+			"name": "cadastro_valido",
+			"url": "https://serverest.dev/usuarios",
+			"time": 674,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Status é 201": true,
+				"tem ID e ele foi salvo": true
+			},
+			"testPassFailCounts": {
+				"Status é 201": {
+					"pass": 1,
+					"fail": 0
+				},
+				"tem ID e ele foi salvo": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				674
+			],
+			"allTests": [
+				{
+					"Status é 201": true,
+					"tem ID e ele foi salvo": true
+				}
+			]
+		},
+		{
+			"id": "54adc16d-e1f9-42ce-82ab-3f00e54cff24",
+			"name": "cadastro_invalido_campo_obrigatorio_em_branco",
+			"url": "https://serverest.dev/usuarios",
+			"time": 306,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status é 400": true,
+				"Erro informando que password não pode ficar em branco": true
+			},
+			"testPassFailCounts": {
+				"Status é 400": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Erro informando que password não pode ficar em branco": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				306
+			],
+			"allTests": [
+				{
+					"Status é 400": true,
+					"Erro informando que password não pode ficar em branco": true
+				}
+			]
+		},
+		{
+			"id": "92d5733a-7bd0-4a09-962c-af5b2babf9a1",
+			"name": "login_valido",
+			"url": "https://serverest.dev/login",
+			"time": 300,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status é 200": true,
+				"Resposta contém token e ele foi salvo": true
+			},
+			"testPassFailCounts": {
+				"Status é 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Resposta contém token e ele foi salvo": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				300
+			],
+			"allTests": [
+				{
+					"Status é 200": true,
+					"Resposta contém token e ele foi salvo": true
+				}
+			]
+		},
+		{
+			"id": "18c47093-d11c-4c7f-9678-30a194bba88e",
+			"name": "login_invalido_senha_errada",
+			"url": "https://serverest.dev/login",
+			"time": 303,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {
+				"Status é 401": true,
+				"Deve retornar que Email e/ou senha inválidos": true,
+				"Não deve retornar token de autorização": true
+			},
+			"testPassFailCounts": {
+				"Status é 401": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Deve retornar que Email e/ou senha inválidos": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Não deve retornar token de autorização": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				303
+			],
+			"allTests": [
+				{
+					"Status é 401": true,
+					"Deve retornar que Email e/ou senha inválidos": true,
+					"Não deve retornar token de autorização": true
+				}
+			]
+		},
+		{
+			"id": "504bff46-3b02-4c22-8f09-6cfd65dbaefe",
+			"name": "lista_de_usuarios",
+			"url": "https://serverest.dev/usuarios",
+			"time": 349,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status é 200": true,
+				"Tempo aceitável (abaixo de 1000ms)": true,
+				"Deve retornar a lista de usuários e a quantidade total": true
+			},
+			"testPassFailCounts": {
+				"Status é 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Tempo aceitável (abaixo de 1000ms)": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Deve retornar a lista de usuários e a quantidade total": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				349
+			],
+			"allTests": [
+				{
+					"Status é 200": true,
+					"Tempo aceitável (abaixo de 1000ms)": true,
+					"Deve retornar a lista de usuários e a quantidade total": true
+				}
+			]
+		},
+		{
+			"id": "fc69adca-e4e3-43fb-8319-27d5c63e2d85",
+			"name": "usuario_id_inexistente",
+			"url": "https://serverest.dev/usuarios/123abc123abc123a",
+			"time": 300,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status é 400": true,
+				"Deve retornar a mensagem Usuário não encontrado": true
+			},
+			"testPassFailCounts": {
+				"Status é 400": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Deve retornar a mensagem Usuário não encontrado": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				300
+			],
+			"allTests": [
+				{
+					"Status é 400": true,
+					"Deve retornar a mensagem Usuário não encontrado": true
+				}
+			]
+		},
+		{
+			"id": "99ce086a-09ea-4b4e-90d7-510ae9a395d6",
+			"name": "cadastro_de_produto_sem_token",
+			"url": "https://serverest.dev/produtos",
+			"time": 302,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {
+				"Status é 401": true,
+				"Deve retornar a mensagem Token de acesso ausente": true
+			},
+			"testPassFailCounts": {
+				"Status é 401": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Deve retornar a mensagem Token de acesso ausente": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				302
+			],
+			"allTests": [
+				{
+					"Status é 401": true,
+					"Deve retornar a mensagem Token de acesso ausente": true
+				}
+			]
+		},
+		{
+			"id": "dd89395e-9b54-4db5-b1c1-7fb90e600f36",
+			"name": "cadastro_de_produto_com_token_valido",
+			"url": "https://serverest.dev/produtos",
+			"time": 303,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {
+				"Produto criado com sucesso (Status 201)": true,
+				"Salva ID do produto criado": true,
+				"tem ID e ele foi salvo": true
+			},
+			"testPassFailCounts": {
+				"Produto criado com sucesso (Status 201)": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Salva ID do produto criado": {
+					"pass": 1,
+					"fail": 0
+				},
+				"tem ID e ele foi salvo": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				303
+			],
+			"allTests": [
+				{
+					"Produto criado com sucesso (Status 201)": true,
+					"Salva ID do produto criado": true,
+					"tem ID e ele foi salvo": true
+				}
+			]
+		},
+		{
+			"id": "be94f464-f456-4139-9f29-2200d61d06c2",
+			"name": "produto_id_inexistente",
+			"url": "https://serverest.dev/produtos/jsNyAANd4KUuS3j3",
+			"time": 302,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status é 400": true,
+				"Deve retornar a mensagem Produto não encontrado": true
+			},
+			"testPassFailCounts": {
+				"Status é 400": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Deve retornar a mensagem Produto não encontrado": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				302
+			],
+			"allTests": [
+				{
+					"Status é 400": true,
+					"Deve retornar a mensagem Produto não encontrado": true
+				}
+			]
+		},
+		{
+			"id": "f3a5fe3f-10a7-4b96-b24d-23d35373e404",
+			"name": "lista_produtos",
+			"url": "https://serverest.dev/produtos",
+			"time": 313,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status é 200": true,
+				"Tempo aceitável (abaixo de 1000ms)": true,
+				"Deve retornar a lista de produtos e a quantidade total": true
+			},
+			"testPassFailCounts": {
+				"Status é 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Tempo aceitável (abaixo de 1000ms)": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Deve retornar a lista de produtos e a quantidade total": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				313
+			],
+			"allTests": [
+				{
+					"Status é 200": true,
+					"Tempo aceitável (abaixo de 1000ms)": true,
+					"Deve retornar a lista de produtos e a quantidade total": true
+				}
+			]
+		},
+		{
+			"id": "d15503b3-2ae8-453a-bd83-7509e527e56b",
+			"name": "excluir_produto_valido",
+			"url": "https://serverest.dev/produtos/XSHDGR2x4NELJB1m",
+			"time": 306,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status é 200": true,
+				"Deve aparecer a mensagem Registro excluído com sucesso": true
+			},
+			"testPassFailCounts": {
+				"Status é 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Deve aparecer a mensagem Registro excluído com sucesso": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				306
+			],
+			"allTests": [
+				{
+					"Status é 200": true,
+					"Deve aparecer a mensagem Registro excluído com sucesso": true
+				}
+			]
+		},
+		{
+			"id": "e087a44d-81ce-4788-8aa4-f695718c1321",
+			"name": "excluir_usuario_valido",
+			"url": "https://serverest.dev/usuarios/89TEnQVbX5vksWut",
+			"time": 300,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status é 200": true,
+				"Deve aparecer a mensagem Registro excluído com sucesso": true
+			},
+			"testPassFailCounts": {
+				"Status é 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Deve aparecer a mensagem Registro excluído com sucesso": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				300
+			],
+			"allTests": [
+				{
+					"Status é 200": true,
+					"Deve aparecer a mensagem Registro excluído com sucesso": true
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 4058,
+	"collection": {
+		"requests": [
+			{
+				"id": "d30b5ca9-d9ae-4d88-a2d6-ffea42b297ec",
+				"method": "POST"
+			},
+			{
+				"id": "54adc16d-e1f9-42ce-82ab-3f00e54cff24",
+				"method": "POST"
+			},
+			{
+				"id": "92d5733a-7bd0-4a09-962c-af5b2babf9a1",
+				"method": "POST"
+			},
+			{
+				"id": "18c47093-d11c-4c7f-9678-30a194bba88e",
+				"method": "POST"
+			},
+			{
+				"id": "504bff46-3b02-4c22-8f09-6cfd65dbaefe",
+				"method": "GET"
+			},
+			{
+				"id": "fc69adca-e4e3-43fb-8319-27d5c63e2d85",
+				"method": "GET"
+			},
+			{
+				"id": "99ce086a-09ea-4b4e-90d7-510ae9a395d6",
+				"method": "POST"
+			},
+			{
+				"id": "dd89395e-9b54-4db5-b1c1-7fb90e600f36",
+				"method": "POST"
+			},
+			{
+				"id": "be94f464-f456-4139-9f29-2200d61d06c2",
+				"method": "GET"
+			},
+			{
+				"id": "f3a5fe3f-10a7-4b96-b24d-23d35373e404",
+				"method": "GET"
+			},
+			{
+				"id": "d15503b3-2ae8-453a-bd83-7509e527e56b",
+				"method": "DELETE"
+			},
+			{
+				"id": "e087a44d-81ce-4788-8aa4-f695718c1321",
+				"method": "DELETE"
+			}
+		]
+	}
+}
