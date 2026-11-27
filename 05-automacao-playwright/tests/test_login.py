@@ -3,6 +3,7 @@ from playwright.sync_api import Page, expect
 from pages.login_page import LoginPage
 
 def test_login_success(page: Page):
+    """VF-01: Realizar login com credenciais válidas e redirecionar para o inventário."""
     login_page = LoginPage(page)
     login_page.base_url()
     login_page.login("standard_user", "secret_sauce")
@@ -11,10 +12,10 @@ def test_login_success(page: Page):
 
 
 def test_login_locked_user(page: Page):
+    """VF-04: Validar mensagem de erro ao tentar autenticar com usuário bloqueado."""
     login_page = LoginPage(page)
     login_page.base_url()
     login_page.login("locked_out_user", "secret_sauce")
 
     expect(login_page.error_alert).to_be_visible()
     expect(login_page.error_alert).to_contain_text("Sorry, this user has been locked out.")
-
